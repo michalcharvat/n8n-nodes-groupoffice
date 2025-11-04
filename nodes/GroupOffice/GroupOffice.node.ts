@@ -2,10 +2,11 @@ import {
 	IExecuteFunctions,
 	IDataObject,
 	INodeExecutionData,
-	INodeType,
-	INodeTypeDescription,
-	NodeOperationError,
+	IHttpRequestMethods,
+	NodeOperationError
 } from 'n8n-workflow';
+
+import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
 
 import {groupOfficeApiRequest} from "./GenericFunctions";
 
@@ -21,12 +22,14 @@ export class GroupOffice implements INodeType {
 		icon: 'file:groupoffice.svg',
 		group: ['input'],
 		version: 1,
+		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: "Consume Group Office API",
 		defaults: {
 			name: "Group Office"
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		usableAsTool: true,
+		inputs: [NodeConnectionTypes.Main],
+		outputs: [NodeConnectionTypes.Main],
 		credentials: [
 			{
 				name: 'groupOfficeApi',
@@ -85,7 +88,7 @@ export class GroupOffice implements INodeType {
 					{
 						name: 'Task',
 						value: 'task',
-					}
+					},
 				],
 				default: 'contact',
 			},
@@ -149,7 +152,7 @@ export class GroupOffice implements INodeType {
 			operation = this.getNodeParameter('operation', 0);
 		}
 
-		let requestMethod = '';
+		let requestMethod: IHttpRequestMethods = 'POST';
 		let responseData: any;
 
 		let endpoint: string = '';

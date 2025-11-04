@@ -1,17 +1,17 @@
 {
-  "node": "n8n-nodes-groupoffice.groupofficeTrigger",
+  "node": "n8n-nodes-groupofficeTrigger",
   "nodeVersion": "1.0",
   "codexVersion": "1.0",
   "categories": ["Data & Storage"],
   "resources": {
     "credentialDocumentation": [
       {
-        "url": "https://docs.n8n.io/credentials/groupoffice"
+        "url": "https://docs.n8n.io/integrations/builtin/credentials/groupoffice"
       }
     ],
     "primaryDocumentation": [
       {
-        "url": "https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-groupoffice.groupofficetrigger/"
+        "url": "https://docs.n8n.io/integrations/builtin/trigger-nodes/n8n-nodes-groupofficeTrigger/"
       }
     ]
   }

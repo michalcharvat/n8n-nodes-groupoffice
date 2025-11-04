@@ -1,17 +1,19 @@
-import type {OptionsWithUri} from 'request';
-
 import {
 	NodeOperationError,
 	type IExecuteFunctions,
-	IDataObject,
-	INodeExecutionData, ILoadOptionsFunctions
+	type IHookFunctions,
+	type IHttpRequestMethods,
+	type IHttpRequestOptions,
+	type IDataObject,
+	INodeExecutionData,
+	ILoadOptionsFunctions,
 } from 'n8n-workflow';
 
 export async function groupOfficeApiRequest(
-	this: IExecuteFunctions | ILoadOptionsFunctions,
-	method: string,
+	this: IHookFunctions | IExecuteFunctions | ILoadOptionsFunctions,
+	method: IHttpRequestMethods,
 	body: any = {},
-	headers?: object,
+	headers?: IDataObject,
 ) {
 	const authenticationMethod = this.getNodeParameter('authentication', 0);
 
@@ -23,14 +25,15 @@ export async function groupOfficeApiRequest(
 		credentials = (await this.getCredentials('groupOfficeOAuth2Api')) as { goUrl: string };
 	}
 
-	headers = {'Content-Type': 'application/json'};
 	body = JSON.stringify(body);
 
-	const options: OptionsWithUri = {
-		headers: headers,
+	const options: IHttpRequestOptions = {
+		headers: {
+			'Content-Type': 'application/json'
+		},
 		method: method,
 		body: body,
-		uri: `${credentials.goUrl}/api/jmap.php`,
+		url: `${credentials.goUrl}/api/jmap.php`,
 		json: true,
 	};
 

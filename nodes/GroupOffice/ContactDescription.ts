@@ -15,7 +15,6 @@ export const contactOperations: INodeProperties[] = [
 			},
 		},
 		options: [
-			/*
 			{
 				name: 'Create',
 				value: 'create',
@@ -27,7 +26,7 @@ export const contactOperations: INodeProperties[] = [
 				value: 'delete',
 				description: 'Delete a contact',
 				action: 'Delete a contact',
-			},*/
+			},
 			{
 				name: 'Get',
 				value: 'get',
