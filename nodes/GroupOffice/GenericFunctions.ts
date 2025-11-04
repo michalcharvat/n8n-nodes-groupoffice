@@ -37,10 +37,10 @@ export async function groupOfficeApiRequest(
 		json: true,
 	};
 
-	console.log(credentials);
-	console.log(headers);
-	console.log(method);
-	console.log(body);
+	//console.log(credentials);
+	//console.log(headers);
+	//console.log(method);
+	//console.log(body);
 
 	/*
 	if (Object.keys(options.body as IDataObject).length === 0) {
